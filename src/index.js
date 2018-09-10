@@ -2,12 +2,11 @@ class Sorter {
   constructor() {
     // your implementation
     this.constr = [];
-    
   }
 
   add(element) {
     // your implementation
-    this.constr.push(element);  
+    this.constr.push(element);
   }
 
   at(index) {
@@ -22,17 +21,23 @@ class Sorter {
 
   toArray() {
     // your implementation
-    return  this.constr;
+    return this.constr;
   }
 
   sort(indices) {
     // your implementation
-    
+    let subAConstr = indices
+      .sort()
+      .map(index => this.constr[index])
+      .sort(this.compareFunction || ((left, right) => left - right));
+    indices.forEach(
+      (index, iterator) => (this.constr[index] = subAConstr[iterator])
+    );
   }
 
   setComparator(compareFunction) {
     // your implementation
-    
+    this.compareFunction = compareFunction;
   }
 }
 
